@@ -1,0 +1,6 @@
+rootProject.name = 'root'
+include 'topay-api'
+include 'topay-core'
+include 'topay-domain'
+include 'topay-web'
+
