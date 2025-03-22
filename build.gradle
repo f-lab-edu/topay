@@ -1,7 +1,6 @@
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.4.3'
-	id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'com.topay'
@@ -18,20 +17,21 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
+	// 스프링 부트
+	implementation 'org.springframework.boot:spring-boot-starter:3.4.3'
 
-	// 검증 로직, AOP, 로깅 의존성
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.boot:spring-boot-starter-aop'
-	implementation 'org.springframework.boot:spring-boot-starter-logging'
+	// 검증 로직, AOP, 로깅 의존성 (각각 버전 명시)
+	implementation 'org.springframework.boot:spring-boot-starter-validation:3.4.3'
+	implementation 'org.springframework.boot:spring-boot-starter-aop:3.4.3'
+	implementation 'org.springframework.boot:spring-boot-starter-logging:3.4.3'
 
 	// Lombok 의존성
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
+	compileOnly 'org.projectlombok:lombok:1.18.26'
+	annotationProcessor 'org.projectlombok:lombok:1.18.26'
 
 	// 테스트 의존성
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:3.4.3'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.9.3'
 }
 
 tasks.named('test') {
