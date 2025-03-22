@@ -41,7 +41,7 @@
 
 ### **기술 스택**
 
-<img src="tech.png" width="500" />
+<img src="image/tech.png" width="500" />
 
 <br><br>
 
