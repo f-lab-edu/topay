@@ -78,6 +78,6 @@
 
 ### **ERD (Entity Relationship Diagram)**
 
-* 공유 예정 ♻
+<img src="image/erd.png" width="850" />
 
 <br>
