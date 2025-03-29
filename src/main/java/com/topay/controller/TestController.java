@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
     @GetMapping
     public String test() {
-        return "CI/CD 배포 테스트";
+        return "CI/CD 배포 테스트 확인";
     }
 }
