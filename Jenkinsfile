@@ -1,5 +1,8 @@
 pipeline {
 	agent any
+    environment {
+		APP_SERVER_PUBLIC_IP = '3.36.82.140'
+    }
 
     stages {
 		stage('Checkout') {
