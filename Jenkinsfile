@@ -9,12 +9,15 @@ pipeline {
             }
         }
 
-        stage('Build') {
+		stage('Build') {
 			steps {
-				// 로컬에서 Gradle 빌드
-                sh './gradlew clean build -x test'
-            }
-        }
+				// gradlew에 실행 권한 부여
+				sh 'chmod +x gradlew'
+				// 로컬에서 Gradle 빌드 (테스트 제외)
+				sh './gradlew clean build -x test'
+			}
+		}
+
 
         stage('Test') {
 			steps {
