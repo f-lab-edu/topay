@@ -24,21 +24,20 @@ pipeline {
                 sh './gradlew test'
             }
         }
-        stage('Prepare Deploy Artifacts') {
+		stage('Prepare Deploy Artifacts') {
 			steps {
-				// 배포에 필요한 파일을 모아서 deploy 폴더 생성
-                sh '''
-                    mkdir -p deploy
-                    # 빌드된 JAR 복사
-                    cp build/libs/*SNAPSHOT.jar deploy/
-                    # 날짜정보 기록
-                    echo $(date +"%Y-%m-%d %H:%M:%S") > deploy/deploy.txt
-                    # Dockerfile과 deploy.sh도 함께 복사
-                    cp Dockerfile deploy/
-                    cp deploy.sh deploy/
-                '''
-            }
-        }
+				sh '''
+					mkdir -p deploy
+					# 빌드된 JAR 복사
+					cp build/libs/*SNAPSHOT.jar deploy/
+					# 날짜정보 기록
+					echo $(date +"%Y-%m-%d %H:%M:%S") > deploy/deploy.txt
+					# 수정된 단일 스테이지 Dockerfile 복사
+					cp Dockerfile deploy/
+					cp deploy.sh deploy/
+				'''
+			}
+		}
         stage('Deploy to App Server') {
 			steps {
 				// SSH 자격 증명 사용
