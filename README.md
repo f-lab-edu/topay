@@ -36,9 +36,21 @@
 
 <br><br>
 
-### **CI/CD 구조도**
+### **메뉴 구조도 (Menu Tree)**
 
-<img src="image/ci-cd-structure.png" width="750" />
+* 공유 예정 ♻
+
+<br>
+
+### 할인 이벤트 Flow
+
+* 공유 예정 ♻
+
+<br>
+
+### 주문 Flow
+
+* 공유 예정 ♻
 
 <br><br>
 
@@ -52,32 +64,10 @@
 
 [타임딜 행사, 주요 API Endpoint ✅](https://github.com/f-lab-edu/topay/wiki/%ED%83%80%EC%9E%84%EB%94%9C-%ED%96%89%EC%82%AC,-%EC%A3%BC%EC%9A%94-API-Endpoint-%F0%9F%93%84)
 
-<br><br>
+[Swagger API Docs ✅]("공개 예정")
 
-### **주요 기능 Flow**
+[ERD (Entity Relationship Diagram) Docs]("공개 예정")
 
-<br>
-
-#### 할인 이벤트 Flow
-
-* 공유 예정 ♻
-
-<br>
-
-#### 주문 · 결제 Flow
-
-* 공유 예정 ♻
+[Git-Flow 브랜치 및 PR 전략]("공개 예정")
 
 <br><br>
-
-### **Swagger API 문서**
-
-* 공유 예정 ♻
-
-<br><br>
-
-### **ERD (Entity Relationship Diagram)**
-
-<img src="image/erd.png" width="850" />
-
-<br>
