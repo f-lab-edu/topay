@@ -1,59 +1,62 @@
 pipeline {
-	agent any
+    agent any
     environment {
-		APP_SERVER_PUBLIC_IP = '3.36.82.140'
+        APP_SERVER_PUBLIC_IP = '3.36.82.140'
+        DB_URL = credentials('jenkins-secret-db-url')
+        DB_USERNAME = credentials('jenkins-secret-db-username')
+        DB_PASSWORD = credentials('jenkins-secret-db-password')
     }
     stages {
-		stage('Checkout') {
-			steps {
-				// Git Credentials를 사용해 코드 가져오기
+        stage('Checkout') {
+            steps {
                 checkout scm
             }
         }
         stage('Build') {
-			steps {
-				// gradlew에 실행 권한 부여
+            steps {
                 sh 'chmod +x gradlew'
-                // 로컬에서 Gradle 빌드 (테스트 제외)
                 sh './gradlew clean build -x test'
             }
         }
         stage('Test') {
-			steps {
-				// 테스트
+            steps {
                 sh './gradlew test'
             }
         }
-		stage('Prepare Deploy Artifacts') {
-			steps {
-				sh '''
-					mkdir -p deploy
-					# 빌드된 JAR 복사
-					cp build/libs/*SNAPSHOT.jar deploy/
-					# 날짜정보 기록
-					echo $(date +"%Y-%m-%d %H:%M:%S") > deploy/deploy.txt
-					# 수정된 단일 스테이지 Dockerfile 복사
-					cp Dockerfile deploy/
-					cp deploy.sh deploy/
-				'''
-			}
-		}
+        stage('Prepare Deploy Artifacts') {
+            steps {
+                sh '''
+                    mkdir -p deploy
+
+                    cp build/libs/*SNAPSHOT.jar deploy/
+                    cp application-prd.yml deploy/
+
+                    echo $(date +"%Y-%m-%d %H:%M:%S") > deploy/deploy.txt
+
+                    cp Dockerfile deploy/
+                    cp deploy.sh deploy/
+                '''
+            }
+        }
         stage('Deploy to App Server') {
-			steps {
-				// SSH 자격 증명 사용
+            steps {
                 sshagent(['app-server-ssh-cred']) {
-					// deploy 폴더를 Application 서버로 전송 후, deploy.sh 실행
                     sh """
                       scp -o StrictHostKeyChecking=no -r deploy ubuntu@${APP_SERVER_PUBLIC_IP}:/home/ubuntu/
-                      ssh -o StrictHostKeyChecking=no ubuntu@${APP_SERVER_PUBLIC_IP} "cd /home/ubuntu/deploy && bash deploy.sh"
+
+                      ssh -o StrictHostKeyChecking=no ubuntu@${APP_SERVER_PUBLIC_IP} \\
+                        "cd /home/ubuntu/deploy && \\
+                         echo 'DB_URL: ${DB_URL}' && \\
+                         echo 'DB_USERNAME: ${DB_USERNAME}' && \\
+                         echo 'DB_PASSWORD: ${DB_PASSWORD}' && \\
+                         bash deploy.sh"
                     """
                 }
             }
         }
     }
     post {
-		always {
-			// 작업공간 정리
+        always {
             cleanWs()
         }
     }

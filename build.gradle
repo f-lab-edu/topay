@@ -22,16 +22,22 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
-    // 검증 로직, AOP, 로깅 의존성 (각각 버전 명시)
+    // 검증 로직, AOP, 로깅
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-aop'
     implementation 'org.springframework.boot:spring-boot-starter-logging'
 
-    // Lombok 의존성
+    // Lombok
     compileOnly 'org.projectlombok:lombok:1.18.26'
     annotationProcessor 'org.projectlombok:lombok:1.18.26'
 
-    // 테스트 의존성
+    // 데이터베이스: H2 (인메모리)
+    runtimeOnly 'com.h2database:h2'
+
+    // 데이터베이스: MySQL
+    runtimeOnly 'com.mysql:mysql-connector-j:8.0.33'
+
+    // 테스트
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.9.3'
 }

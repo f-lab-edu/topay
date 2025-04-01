@@ -20,15 +20,23 @@ if [ -f "$DEPLOY_FILE" ]; then
         docker rename $CONTAINER_NAME $OLD_CONTAINER_NAME
     fi
 
-    # 3) 새 컨테이너 실행 (포트 매핑 8080:8080)
-    docker run -d -p 8080:8080 --name $CONTAINER_NAME $IMAGE_NAME:$IMAGE_TAG
+    # 3) 새 컨테이너 실행
+    docker run -d -p 8080:8080 \
+      --name $CONTAINER_NAME \
+      -v "$DEPLOY_DIR/application-prd.yml:/app/application-prd.yml" \
+      -e SPRING_PROFILES_ACTIVE=prd \
+      -e SPRING_CONFIG_LOCATION=file:/app/application-prd.yml \
+      -e DB_URL="$DB_URL" \
+      -e DB_USERNAME="$DB_USERNAME" \
+      -e DB_PASSWORD="$DB_PASSWORD" \
+      $IMAGE_NAME:$IMAGE_TAG
 
-    # 4) 이전 컨테이너 삭제 (선택)
+    # 4) 이전 컨테이너 삭제
     if [ -n "$OLD_CONTAINER_NAME" ]; then
         docker rm -f $OLD_CONTAINER_NAME
     fi
 
-    # 5) deploy 폴더 정리 (선택)
+    # 5) deploy 폴더 정리
     rm -rf "$DEPLOY_DIR"/*
 else
     echo "No deploy.txt found. Skipping deployment."
