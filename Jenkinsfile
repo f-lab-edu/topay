@@ -10,54 +10,53 @@ pipeline {
         DB_PASSWORD = credentials('jenkins-secret-db-password')
     }
     stages {
-        stage('Checkout') {
+        stage('Checkout ✨✨✨✨✨') {
             steps {
-                checkout scm
+                checkout scm  // 소스 코드 체크아웃
             }
         }
-        stage('Build') {
+        stage('Build ✨✨✨✨✨') {
             steps {
                 sh 'chmod +x gradlew'
-
                 // 테스트 제외하고 빌드
                 sh './gradlew clean build -x test'
             }
         }
-        stage('Test') {
+        stage('Test ✨✨✨✨✨') {
             steps {
                 // 테스트 실행
                 sh './gradlew test'
             }
         }
-        stage('Prepare Deploy Artifacts') {
+        stage('Prepare Deploy Artifacts ✨✨✨✨✨') {
             steps {
                 sh '''
-                    // 배포 폴더 생성
+                    # 배포 폴더 생성
                     mkdir -p deploy
 
-                    // 빌드된 JAR 파일 복사
+                    # 빌드된 JAR 파일 복사
                     cp build/libs/*SNAPSHOT.jar deploy/
 
-                    // 프로덕션 설정 파일 복사
+                    # 프로덕션 설정 파일 복사
                     cp src/main/resources/application-prd.yml deploy/
 
-                    // 배포 시간 기록
+                    # 배포 시간 기록
                     echo $(date +"%Y-%m-%d %H:%M:%S") > deploy/deploy.txt
 
-                    // Dockerfile 복사
+                    # Dockerfile 복사
                     cp Dockerfile deploy/
 
-                    // 배포 스크립트 복사
+                    # 배포 스크립트 복사
                     cp deploy.sh deploy/
                 '''
             }
         }
-        stage('Deploy to App Server') {
+        stage('Deploy to App Server ✨✨✨✨✨') {
             steps {
                 // 앱 서버 SSH 접속 자격증명 사용
                 sshagent(['app-server-ssh-cred']) {
                     sh """
-                      // 배포 폴더 전송
+                      # 배포 폴더 전송
                       scp -o StrictHostKeyChecking=no -r deploy ubuntu@${APP_SERVER_PUBLIC_IP}:/home/ubuntu/
 
                       ssh -o StrictHostKeyChecking=no ubuntu@${APP_SERVER_PUBLIC_IP} \\
@@ -66,7 +65,7 @@ pipeline {
                          echo 'DB_USERNAME: ${DB_USERNAME}' && \\
                          echo 'DB_PASSWORD: ${DB_PASSWORD}' && \\
 
-                         // 원격 서버에서 배포 스크립트 실행
+                         # 원격 서버에서 배포 스크립트 실행
                          bash deploy.sh"
                     """
                 }
