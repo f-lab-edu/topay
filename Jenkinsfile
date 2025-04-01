@@ -61,12 +61,7 @@ pipeline {
 
                       ssh -o StrictHostKeyChecking=no ubuntu@${APP_SERVER_PUBLIC_IP} \\
                         "cd /home/ubuntu/deploy && \\
-                         echo 'DB_URL: ${DB_URL}' && \\
-                         echo 'DB_USERNAME: ${DB_USERNAME}' && \\
-                         echo 'DB_PASSWORD: ${DB_PASSWORD}' && \\
-
-                         # 원격 서버에서 배포 스크립트 실행
-                         bash deploy.sh"
+                         DB_URL='${DB_URL}' DB_USERNAME='${DB_USERNAME}' DB_PASSWORD='${DB_PASSWORD}' bash deploy.sh"
                     """
                 }
             }
