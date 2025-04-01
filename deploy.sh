@@ -36,8 +36,8 @@ if [ -f "$DEPLOY_FILE" ]; then
         docker rm -f $OLD_CONTAINER_NAME
     fi
 
-    # 5) deploy 폴더 정리
-    rm -rf "$DEPLOY_DIR"/*
+    # 5) deploy 폴더 정리 (application-prd.yml 파일은 유지)
+    find "$DEPLOY_DIR" -mindepth 1 ! -name 'application-prd.yml' -exec rm -rf {} +
 else
     echo "No deploy.txt found. Skipping deployment."
 fi
