@@ -2,9 +2,9 @@
 
 DEPLOY_DIR="$(pwd)"
 DEPLOY_FILE="$DEPLOY_DIR/deploy.txt"
-IMAGE_NAME="weakwill-api"
+IMAGE_NAME="topay-api"
 IMAGE_TAG="latest"
-CONTAINER_NAME="weakwill-api-container"
+CONTAINER_NAME="topay-api-container"
 DOCKERFILE="$DEPLOY_DIR/Dockerfile"
 
 if [ -f "$DEPLOY_FILE" ]; then
