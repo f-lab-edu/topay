@@ -14,11 +14,11 @@ import java.security.MessageDigest;
 public class SHA256EncryptionService implements EncryptionService {
 
     @Override
-    public String encrypt(String s) {
+    public String encrypt(String string) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
 
-            byte[] passBytes = s.getBytes();
+            byte[] passBytes = string.getBytes();
             md.reset();
 
             byte[] digested = md.digest(passBytes);
@@ -29,8 +29,8 @@ public class SHA256EncryptionService implements EncryptionService {
             }
             return sb.toString();
         } catch (Exception e) {
-            return s;
+            return string;
         }
     }
-    
+
 }
