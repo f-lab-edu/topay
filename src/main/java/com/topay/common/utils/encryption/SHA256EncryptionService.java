@@ -1,4 +1,5 @@
 package com.topay.common.utils.encryption;
+
 import org.springframework.stereotype.Component;
 
 import java.security.MessageDigest;
