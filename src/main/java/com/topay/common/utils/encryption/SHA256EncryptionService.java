@@ -34,4 +34,8 @@ public class SHA256EncryptionService implements EncryptionService {
         }
     }
 
+    public String passwordEncryption(EncryptionService encryptionService, String password) {
+        return encryptionService.encrypt(password);
+    }
+
 }

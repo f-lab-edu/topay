@@ -1,10 +1,7 @@
 package com.topay.user.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -30,9 +27,15 @@ public class UserEntity extends BaseTimeEntity {
     private Level level;
 
     public static UserEntity of(String name, String email, Account account, Level level) {
-        return new UserEntity(null, name, email, account, level);
+        return UserEntity.builder()
+                .name(name)
+                .email(email)
+                .account(account)
+                .level(level)
+                .build();
     }
 
+    @Builder
     public UserEntity(Long id, String name, String email, Account account, Level level) {
         this.id = id;
         this.name = name;
