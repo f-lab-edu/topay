@@ -1,6 +1,6 @@
 package com.topay.user.service;
 
-import com.topay.common.utils.encrytion.EncryptionService;
+import com.topay.common.utils.encryption.EncryptionService;
 import com.topay.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
