@@ -1,4 +1,5 @@
 package com.topay.common.utils.encryption;
+
 import org.springframework.stereotype.Component;
 
 import java.security.MessageDigest;
@@ -31,6 +32,10 @@ public class SHA256EncryptionService implements EncryptionService {
         } catch (Exception e) {
             return string;
         }
+    }
+
+    public String passwordEncryption(EncryptionService encryptionService, String password) {
+        return encryptionService.encrypt(password);
     }
 
 }
