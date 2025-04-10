@@ -26,7 +26,7 @@
 
 ### **이슈 정리**
 
-* 블로그 아티클 공유 예정 🌱
+* 공유 예정 🌱
 
 <br><br>
 
@@ -36,21 +36,9 @@
 
 <br><br>
 
-### **메뉴 구조도 (Menu Tree)**
+### **할인 이벤트 워크플로우**
 
-* 공유 예정 ♻
-
-<br>
-
-### 할인 이벤트 Flow
-
-* 공유 예정 ♻
-
-<br>
-
-### 주문 Flow
-
-* 공유 예정 ♻
+<img src="image/discount-coupon.png" width="750" />
 
 <br><br>
 
@@ -60,14 +48,20 @@
 
 <br><br>
 
-### **Wiki 📄**
+### **ERD (Entity Relationship Diagram)**
 
-[타임딜 행사, 주요 API Endpoint ✅](https://github.com/f-lab-edu/topay/wiki/%ED%83%80%EC%9E%84%EB%94%9C-%ED%96%89%EC%82%AC,-%EC%A3%BC%EC%9A%94-API-Endpoint-%F0%9F%93%84)
+* 공유 예정 🌱
 
-[Swagger API Docs ✅]("공개 예정")
+<br><br>
 
-[ERD (Entity Relationship Diagram) Docs]("공개 예정")
+### **Swagger API Docs**
 
-[Git-Flow 브랜치 및 PR 전략]("공개 예정")
+* 공유 예정 🌱
+
+<br><br>
+
+### **Git-Flow 브랜치 및 PR 전략**
+
+<img src="image/git-flow.png" width="450" />
 
 <br><br>
