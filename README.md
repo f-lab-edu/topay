@@ -1,6 +1,6 @@
 # 𝒕𝒐𝒑𝒂𝒚
 
-<img src="image/logo.png" width="450" />
+<img src="docs/image/logo.png" width="450" />
 
 "타임 딜 특가 ❗" <br>
 쿠팡을 모티브로 만든 커머스 플랫폼 API 서버 토이 프로젝트입니다.
@@ -32,19 +32,19 @@
 
 ### **📌 서버 구조도**
 
-<img src="image/server-structure.png" width="750" />
+<img src="docs/image/server-structure.png" width="750" />
 
 <br><br>
 
 ### **📌 할인 이벤트 워크플로우**
 
-<img src="image/discount-coupon.png" width="750" />
+<img src="docs/image/discount-coupon.png" width="750" />
 
 <br><br>
 
 ### **📌 기술 스택**
 
-<img src="image/tech.png" width="500" />
+<img src="docs/image/tech.png" width="500" />
 
 <br><br>
 
@@ -63,6 +63,6 @@
 
 ### **📌 Git-Flow 브랜치 및 PR 전략**
 
-<img src="image/git-flow.png" width="450" />
+<img src="docs/image/git-flow.png" width="450" />
 
 <br><br>
