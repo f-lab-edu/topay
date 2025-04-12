@@ -11,6 +11,13 @@ spring:
     url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
+  redis:
+    session:
+      host: ${SESSION_HOST}
+      port: ${SESSION_PORT}
+    cache:
+      host: ${CACHE_HOST}
+      port: ${CACHE_PORT}
 
 server:
   port: 8080

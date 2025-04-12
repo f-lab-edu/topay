@@ -14,6 +14,13 @@ spring:
   h2:
     console:
       enabled: true
+  redis:
+    session:
+      host: 127.0.0.1
+      port: 6379
+    cache:
+      host: 127.0.0.1
+      port: 6380
 
 server:
   port: 8080
