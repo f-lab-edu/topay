@@ -50,7 +50,7 @@
 
 ### **📌 ERD (Entity Relationship Diagram)**
 
-* 공유 예정 🌱
+<img src="docs/image/erd.png" width="900" />
 
 <br><br>
 
