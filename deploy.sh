@@ -20,7 +20,7 @@ if [ -f "$DEPLOY_FILE" ]; then
         docker rename $CONTAINER_NAME $OLD_CONTAINER_NAME
     fi
 
-    # 3) 새 컨테이너 실행
+    # 3) 새 컨테이너 실행 (DB & Redis 관련 환경 변수 포함)
     docker run -d -p 8080:8080 \
       --name $CONTAINER_NAME \
       -v "$DEPLOY_DIR/application-prd.yml:/app/application-prd.yml" \
@@ -29,6 +29,10 @@ if [ -f "$DEPLOY_FILE" ]; then
       -e DB_URL="$DB_URL" \
       -e DB_USERNAME="$DB_USERNAME" \
       -e DB_PASSWORD="$DB_PASSWORD" \
+      -e SESSION_HOST="$SESSION_HOST" \
+      -e SESSION_PORT="$SESSION_PORT" \
+      -e CACHE_HOST="$CACHE_HOST" \
+      -e CACHE_PORT="$CACHE_PORT" \
       $IMAGE_NAME:$IMAGE_TAG
 
     # 4) 이전 컨테이너 삭제
