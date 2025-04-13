@@ -30,20 +30,32 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, AuthenticationManager authManager) throws Exception {
 
-        // 1. 폼 로그인과 CSRF 비활성화 (REST API 형태)
+        /**
+         * REST API로 사용하기 위해, 기본 폼 로그인과 CSRF 보호 기능을 비활성
+         */
         http.formLogin(form -> form.disable());
         http.csrf(csrf -> csrf.disable());
 
-        // 2. 세션 정책 설정 (Redis Session 사용 시, 상태 기반 유지)
+        /**
+         * 요청마다(혹은 세션이 없는 요청마다) 새로운 HTTP 세션을 생성
+         */
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS));
 
-        // 3. 엔드포인트 권한 설정
+        /**
+         * "엔드포인트 권한 설정"
+         *
+         * /login, /logout, /resources/** 경로에 대해서는 인증 없이 접근할 수 있도록 하고,
+         * 그 외의 요청은 인증된 사용자만 접근할 수 있도록 설정
+         */
         http.authorizeHttpRequests(auth -> auth
                 .requestMatchers("/login", "/logout", "/resources/**").permitAll()
                 .anyRequest().authenticated()
         );
 
-        // 4. 로그아웃 설정 (JSON 응답 기반)
+        /**
+         * 로그아웃 URL(/logout)에 접근 시,
+         * 세션 무효화와 쿠키 삭제(JSESSIONID) 후 JSON 형태의 응답을 반환하도록 설정
+         */
         http.logout(logout -> logout
                 .logoutUrl("/logout")
                 .logoutSuccessHandler((request, response, authentication) -> {
@@ -56,14 +68,21 @@ public class SecurityConfig {
                 .permitAll()
         );
 
-        // 5. 커스텀 JSON 인증 필터 생성 및 설정
+        /**
+         * "커스텀 JSON 인증 필터 등록"
+         *
+         * 기존의 폼 기반 로그인 대신, JSON 형식의 로그인 요청을 처리하기 위해 커스텀 필터
+         * JSON 요청을 파싱하여 UsernamePasswordAuthenticationToken을 생성하고, AuthenticationManager를 통해 인증을 수행
+         */
         JsonUsernamePasswordAuthenticationFilter jsonAuthFilter = new JsonUsernamePasswordAuthenticationFilter();
         jsonAuthFilter.setAuthenticationManager(authManager);
         jsonAuthFilter.setFilterProcessesUrl("/login");
         jsonAuthFilter.setAuthenticationSuccessHandler(new RestAuthenticationSuccessHandler());
         jsonAuthFilter.setAuthenticationFailureHandler(new RestAuthenticationFailureHandler());
 
-        // 6. 기존 UsernamePasswordAuthenticationFilter 위치에 커스텀 필터 등록
+        /**
+         * 기존 UsernamePasswordAuthenticationFilter 위치에 커스텀 필터 등록
+         */
         http.addFilterAt(jsonAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

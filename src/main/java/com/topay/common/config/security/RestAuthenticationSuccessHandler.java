@@ -12,6 +12,7 @@ import java.util.Map;
 
 public class RestAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
+    // JSON 파싱에 사용할 ObjectMapper 인스턴스
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
@@ -24,6 +25,7 @@ public class RestAuthenticationSuccessHandler implements AuthenticationSuccessHa
         responseData.put("message", "로그인 성공");
         responseData.put("username", authentication.getName());
 
+        // Map을 JSON 문자열로 변환하여 클라이언트로 응답 전송
         response.getWriter().write(objectMapper.writeValueAsString(responseData));
     }
 
