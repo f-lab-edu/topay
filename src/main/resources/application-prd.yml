@@ -11,6 +11,8 @@ spring:
     url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
+  session:
+    store-type: redis
   redis:
     session:
       host: ${SESSION_HOST}
