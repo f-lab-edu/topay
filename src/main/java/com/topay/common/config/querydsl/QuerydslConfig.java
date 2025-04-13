@@ -1,4 +1,4 @@
-package com.topay.common.config;
+package com.topay.common.config.querydsl;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;

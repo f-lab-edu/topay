@@ -1,7 +1,7 @@
 spring:
   config:
     activate:
-      on-profile: local
+      on-profile: test
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -14,6 +14,12 @@ spring:
   h2:
     console:
       enabled: true
-
-server:
-  port: 8080
+  session:
+    store-type: redis
+  redis:
+    session:
+      host: localhost
+      port: 6379
+    cache:
+      host: localhost
+      port: 6380

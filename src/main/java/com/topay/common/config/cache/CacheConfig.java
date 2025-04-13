@@ -1,4 +1,4 @@
-package com.topay.common.config;
+package com.topay.common.config.cache;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;

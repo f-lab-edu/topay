@@ -1,6 +1,5 @@
 package com.topay.user.service;
 
-import com.topay.common.utils.encryption.EncryptionService;
 import com.topay.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
     private final UserRepository userRepository;
-    private final EncryptionService encryptionService;
 
     // TODO: 회원 가입 기능
 
